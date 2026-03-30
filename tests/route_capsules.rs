@@ -1,11 +1,11 @@
 use bytes::BytesMut;
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 
-use connect_ip::capsule::route::{
+use connect_ip_rs::capsule::route::{
     decode_route_advertisement, encode_ip_address_range, encode_route_advertisement,
     IpAddressRange, RouteAdvertisement,
 };
-use connect_ip::types::IpVersion;
+use connect_ip_rs::types::IpVersion;
 
 #[test]
 fn roundtrip_single_ipv4_range() {

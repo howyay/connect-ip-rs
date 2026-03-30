@@ -1,9 +1,9 @@
 use bytes::{Bytes, BytesMut};
 use criterion::{criterion_group, criterion_main, Criterion, Throughput};
 
-use connect_ip::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
-use connect_ip::datagram::{decode_ip_datagram, encode_ip_datagram};
-use connect_ip::varint;
+use connect_ip_rs::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
+use connect_ip_rs::datagram::{decode_ip_datagram, encode_ip_datagram};
+use connect_ip_rs::varint;
 
 fn bench_varint(c: &mut Criterion) {
     let mut group = c.benchmark_group("varint");

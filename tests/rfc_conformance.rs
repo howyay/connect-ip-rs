@@ -6,18 +6,18 @@ mod helpers;
 use bytes::{BufMut, Bytes, BytesMut};
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 
-use connect_ip::capsule::address::{
+use connect_ip_rs::capsule::address::{
     decode_address_assign, decode_address_request, encode_address_assign, encode_address_request,
     AddressAssign, AddressRequest, AssignedAddress, RequestedAddress,
 };
-use connect_ip::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
-use connect_ip::capsule::route::{
+use connect_ip_rs::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
+use connect_ip_rs::capsule::route::{
     decode_route_advertisement, encode_ip_address_range, encode_route_advertisement,
     IpAddressRange, RouteAdvertisement,
 };
-use connect_ip::datagram::{decode_ip_datagram, encode_ip_datagram};
-use connect_ip::types::IpVersion;
-use connect_ip::varint;
+use connect_ip_rs::datagram::{decode_ip_datagram, encode_ip_datagram};
+use connect_ip_rs::types::IpVersion;
+use connect_ip_rs::varint;
 
 // ══════════════════════════════════════════════════════════════════════
 // RFC 9000 §16 — Variable-Length Integer Encoding
@@ -400,7 +400,7 @@ fn tunnel_mtu_none_when_not_provided() {
     let max_dg = 1200usize;
     let quarter_id = 0u64; // stream ID 0, quarter = 0
     let h3_overhead = varint::encoded_len(quarter_id); // 1 byte
-    let cip_overhead = connect_ip::datagram::framing_overhead(0); // 1 byte
+    let cip_overhead = connect_ip_rs::datagram::framing_overhead(0); // 1 byte
     let mtu = max_dg.saturating_sub(h3_overhead + cip_overhead);
     assert_eq!(mtu, 1198); // 1200 - 1 - 1
 }

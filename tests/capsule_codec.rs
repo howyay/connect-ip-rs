@@ -1,5 +1,5 @@
 use bytes::{Bytes, BytesMut};
-use connect_ip::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
+use connect_ip_rs::capsule::codec::{decode_capsule, encode_capsule, RawCapsule};
 
 #[test]
 fn roundtrip_empty_payload() {

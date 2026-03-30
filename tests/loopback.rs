@@ -1,7 +1,7 @@
 mod helpers;
 
-use connect_ip::client::ConnectIpClient;
-use connect_ip::proxy::ConnectIpProxy;
+use connect_ip_rs::client::ConnectIpClient;
+use connect_ip_rs::proxy::ConnectIpProxy;
 use http::{Request, StatusCode};
 
 #[tokio::test]
@@ -221,9 +221,9 @@ async fn non_connect_ip_request_rejected_with_400() {
 /// The client receives both using tokio::select! on independent handles.
 #[tokio::test]
 async fn concurrent_capsule_and_datagram_io() {
-    use connect_ip::capsule::route::{IpAddressRange, RouteAdvertisement};
-    use connect_ip::session::Capsule;
-    use connect_ip::types::IpVersion;
+    use connect_ip_rs::capsule::route::{IpAddressRange, RouteAdvertisement};
+    use connect_ip_rs::session::Capsule;
+    use connect_ip_rs::types::IpVersion;
     use std::net::{IpAddr, Ipv4Addr};
 
     let (certs, key) = helpers::generate_test_certs();

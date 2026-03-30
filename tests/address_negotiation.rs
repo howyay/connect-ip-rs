@@ -4,12 +4,12 @@ mod helpers;
 
 use std::net::{IpAddr, Ipv4Addr};
 
-use connect_ip::capsule::address::{AddressAssign, AddressRequest, AssignedAddress, RequestedAddress};
-use connect_ip::capsule::route::{IpAddressRange, RouteAdvertisement};
-use connect_ip::client::ConnectIpClient;
-use connect_ip::proxy::ConnectIpProxy;
-use connect_ip::session::Capsule;
-use connect_ip::types::IpVersion;
+use connect_ip_rs::capsule::address::{AddressAssign, AddressRequest, AssignedAddress, RequestedAddress};
+use connect_ip_rs::capsule::route::{IpAddressRange, RouteAdvertisement};
+use connect_ip_rs::client::ConnectIpClient;
+use connect_ip_rs::proxy::ConnectIpProxy;
+use connect_ip_rs::session::Capsule;
+use connect_ip_rs::types::IpVersion;
 
 #[tokio::test]
 async fn proxy_assigns_address_to_client() {
@@ -280,7 +280,7 @@ async fn unknown_capsule_type_is_skipped() {
 
         // Send an unknown capsule type (0xFF)
         session
-            .send_raw_capsule(&connect_ip::capsule::codec::RawCapsule {
+            .send_raw_capsule(&connect_ip_rs::capsule::codec::RawCapsule {
                 capsule_type: 0xFF,
                 payload: bytes::Bytes::from_static(b"mystery"),
             })

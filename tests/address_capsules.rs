@@ -1,11 +1,11 @@
 use bytes::BytesMut;
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 
-use connect_ip::capsule::address::{
+use connect_ip_rs::capsule::address::{
     decode_address_assign, decode_address_request, encode_address_assign, encode_address_request,
     AddressAssign, AddressRequest, AssignedAddress, RequestedAddress,
 };
-use connect_ip::types::IpVersion;
+use connect_ip_rs::types::IpVersion;
 
 #[test]
 fn roundtrip_address_assign_ipv4() {

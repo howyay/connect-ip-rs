@@ -1,10 +1,10 @@
-# Phase 1a Spec: `connect-ip` Crate
+# Phase 1a Spec: `connect-ip-rs` Crate
 
 A production-quality Rust implementation of RFC 9484 (Proxying IP in HTTP / CONNECT-IP) built on `quinn` and `h3`.
 
 ## Goal
 
-Provide a standalone, reusable Rust crate (`connect-ip`) that implements the CONNECT-IP protocol over HTTP/3. It should be publishable to crates.io independently of meshque, usable by anyone who wants to tunnel IP packets through an HTTP/3 proxy.
+Provide a standalone, reusable Rust crate (`connect-ip-rs`) that implements the CONNECT-IP protocol over HTTP/3. It should be publishable to crates.io independently of meshque, usable by anyone who wants to tunnel IP packets through an HTTP/3 proxy.
 
 ## Dependencies
 

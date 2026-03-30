@@ -1,5 +1,5 @@
 use bytes::{BytesMut};
-use connect_ip::varint;
+use connect_ip_rs::varint;
 
 #[test]
 fn encode_decode_single_byte() {

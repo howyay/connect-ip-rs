@@ -8,7 +8,7 @@ use std::sync::Arc;
 use quinn::crypto::rustls::QuicServerConfig;
 use rustls::pki_types::{CertificateDer, PrivatePkcs8KeyDer};
 
-use connect_ip::proxy::ConnectIpProxy;
+use connect_ip_rs::proxy::ConnectIpProxy;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

@@ -1,10 +1,10 @@
 [package]
-name = "connect-ip"
+name = "connect-ip-rs"
 version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "RFC 9484 CONNECT-IP (Proxying IP in HTTP) implementation over HTTP/3"
-repository = "https://github.com/howyay/connect-ip"
+repository = "https://github.com/howyay/connect-ip-rs"
 keywords = ["masque", "connect-ip", "http3", "quic", "vpn"]
 categories = ["network-programming", "web-programming"]
 readme = "README.md"

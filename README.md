@@ -1,4 +1,4 @@
-# connect-ip
+# connect-ip-rs
 
 A Rust implementation of [RFC 9484 (CONNECT-IP)](https://www.rfc-editor.org/rfc/rfc9484) — Proxying IP in HTTP — over HTTP/3.
 
@@ -19,7 +19,7 @@ This crate provides client and proxy APIs for tunneling IP packets through an HT
 
 ```
 ┌──────────────────────────────────────────┐
-│              connect-ip crate            │
+│            connect-ip-rs crate            │
 ├────────────────┬─────────────────────────┤
 │   Client API   │      Proxy API          │
 ├────────────────┴─────────────────────────┤
@@ -43,7 +43,7 @@ This crate provides client and proxy APIs for tunneling IP packets through an HT
 ### Client
 
 ```rust
-use connect_ip::{ConnectIpClient, ConnectIpClientSession};
+use connect_ip_rs::{ConnectIpClient, ConnectIpClientSession};
 
 // Establish a QUIC connection, then:
 let client_session = ConnectIpClient::connect(
@@ -64,7 +64,7 @@ let packet = client_session.session.recv_ip_packet().await?;
 ### Proxy
 
 ```rust
-use connect_ip::{ConnectIpProxy, ConnectIpRequest};
+use connect_ip_rs::{ConnectIpProxy, ConnectIpRequest};
 
 // Accept incoming CONNECT-IP requests from an h3 server connection
 let request = ConnectIpProxy::accept(&mut h3_conn).await?.unwrap();

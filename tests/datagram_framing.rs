@@ -1,5 +1,5 @@
 use bytes::{Bytes, BytesMut};
-use connect_ip::datagram::{decode_ip_datagram, encode_ip_datagram};
+use connect_ip_rs::datagram::{decode_ip_datagram, encode_ip_datagram};
 
 #[test]
 fn roundtrip_ipv4_packet() {
@@ -38,7 +38,7 @@ fn context_id_zero_is_one_byte() {
 #[test]
 fn decode_non_zero_context_id() {
     let mut buf = BytesMut::new();
-    connect_ip::varint::encode(5, &mut buf);
+    connect_ip_rs::varint::encode(5, &mut buf);
     buf.extend_from_slice(&[0xAA, 0xBB, 0xCC]);
 
     let (context_id, payload) = decode_ip_datagram(&mut buf.freeze()).unwrap();

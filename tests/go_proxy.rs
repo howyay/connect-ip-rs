@@ -12,7 +12,7 @@ use std::sync::Arc;
 use std::time::Duration;
 
 use bytes::Bytes;
-use connect_ip::session::Capsule;
+use connect_ip_rs::session::Capsule;
 use h3_datagram::datagram_handler::HandleDatagramsExt;
 use quinn::crypto::rustls::QuicClientConfig;
 use rustls::pki_types::CertificateDer;
@@ -165,7 +165,7 @@ async fn rust_client_to_go_proxy() {
             data.advance(len);
         }
         let mut frozen = buf.freeze();
-        let capsule = connect_ip::capsule::codec::decode_capsule(&mut frozen).unwrap();
+        let capsule = connect_ip_rs::capsule::codec::decode_capsule(&mut frozen).unwrap();
         if let Some(raw) = capsule {
             eprintln!(
                 "[rust] Received capsule type={:#x}, payload_len={}",
@@ -176,7 +176,7 @@ async fn rust_client_to_go_proxy() {
 
             let mut payload = raw.payload;
             let assign =
-                connect_ip::capsule::address::decode_address_assign(&mut payload).unwrap();
+                connect_ip_rs::capsule::address::decode_address_assign(&mut payload).unwrap();
             eprintln!("[rust] ADDRESS_ASSIGN: {:?}", assign);
             assert_eq!(assign.addresses.len(), 1);
             assert_eq!(
@@ -199,7 +199,7 @@ async fn rust_client_to_go_proxy() {
             data.advance(len);
         }
         let mut frozen = buf.freeze();
-        let capsule = connect_ip::capsule::codec::decode_capsule(&mut frozen).unwrap();
+        let capsule = connect_ip_rs::capsule::codec::decode_capsule(&mut frozen).unwrap();
         if let Some(raw) = capsule {
             eprintln!(
                 "[rust] Received capsule type={:#x}, payload_len={}",
@@ -213,7 +213,7 @@ async fn rust_client_to_go_proxy() {
 
             let mut payload = raw.payload;
             let routes =
-                connect_ip::capsule::route::decode_route_advertisement(&mut payload).unwrap();
+                connect_ip_rs::capsule::route::decode_route_advertisement(&mut payload).unwrap();
             eprintln!("[rust] ROUTE_ADVERTISEMENT: {:?}", routes);
             assert_eq!(routes.ranges.len(), 1);
             assert_eq!(
@@ -249,7 +249,7 @@ async fn rust_client_to_go_proxy() {
     for i in 0..3 {
         // Encode: Context ID 0 (varint) + IP packet
         let mut dg_buf = bytes::BytesMut::with_capacity(1 + ipv4_packet.len());
-        connect_ip::varint::encode(0, &mut dg_buf); // context ID 0
+        connect_ip_rs::varint::encode(0, &mut dg_buf); // context ID 0
         dg_buf.extend_from_slice(&ipv4_packet);
 
         dg_sender
@@ -261,7 +261,7 @@ async fn rust_client_to_go_proxy() {
         let dg = dg_reader.read_datagram().await.unwrap();
         let mut payload: Bytes = dg.into_payload();
         let (ctx_id, echoed_packet) =
-            connect_ip::datagram::decode_ip_datagram(&mut payload).unwrap();
+            connect_ip_rs::datagram::decode_ip_datagram(&mut payload).unwrap();
         assert_eq!(ctx_id, 0, "echo should have context ID 0");
         assert_eq!(echoed_packet.len(), 20);
         eprintln!("[rust] Received echo #{} ({} bytes)", i + 1, echoed_packet.len());

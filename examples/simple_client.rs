@@ -9,7 +9,7 @@ use std::sync::Arc;
 
 use rustls::pki_types::CertificateDer;
 
-use connect_ip::client::ConnectIpClient;
+use connect_ip_rs::client::ConnectIpClient;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
