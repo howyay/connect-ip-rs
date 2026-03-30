@@ -83,7 +83,7 @@ impl ConnectIpClient {
         Ok(ConnectIpClientSession {
             session,
             driver: h3_conn,
-            _send_request: send_request,
+            send_request,
         })
     }
 }
@@ -102,5 +102,7 @@ where
     /// in a background task.
     pub driver: h3::client::Connection<C, Bytes>,
     /// Keep alive handle — dropping this closes the h3 connection.
-    _send_request: h3::client::SendRequest<C::OpenStreams, Bytes>,
+    /// Keep-alive handle — dropping this closes the h3 connection.
+    /// Must be held for the lifetime of the session.
+    pub send_request: h3::client::SendRequest<C::OpenStreams, Bytes>,
 }
